@@ -1,0 +1,27 @@
+/* ==========================================================================
+    Let's build Todoist Neko
+   ========================================================================== */
+   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+   // General Settings
+   html {
+     -webkit-box-sizing: border-box;
+             box-sizing: border-box;
+   }
+   *, *:before, *:after {
+     -webkit-box-sizing: inherit;
+             box-sizing: inherit;
+   }
+
+   .header{
+    border: 1px solid #000;
+    background-color: paleturquoise;
+    width: 100%;
+    height: 100px;
+   }
+
+   .sidebar{
+    border: 1px solid #000;
+    background-color: rosybrown;
+
+   }
