@@ -17,11 +17,45 @@
     border: 1px solid #000;
     background-color: paleturquoise;
     width: 100%;
-    height: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+   }
+
+
+   .header button{
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
    }
 
    .sidebar{
     border: 1px solid #000;
     background-color: rosybrown;
 
+    width: 200px;
    }
+
+   .content{
+    display: flex;
+    border: 1px solid #000;
+
+    background-color: lightgreen;
+   }
+.tasks{
+    border: 1px solid #000;
+    background-color: lightblue;
+    margin: 0 20px;
+    padding: 0 20px;
+
+}
+.tasks button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 40px;
+}
