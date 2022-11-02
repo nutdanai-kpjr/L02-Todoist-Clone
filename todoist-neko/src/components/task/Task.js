@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-export const Task = () => {
+export const Task = ({ id, name }) => {
+  const onCheck = (id) => {
+    console.log(id);
+  };
   return (
     <div className="task">
       <div>
-        <button>[ - ]</button>
-        Run to the moon
+        <button onClick={() => onCheck(id)}>[ - ]</button>
+        {name}
       </div>
     </div>
   );
