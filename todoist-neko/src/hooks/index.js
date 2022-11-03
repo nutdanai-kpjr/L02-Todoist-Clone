@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { tasksRef } from "../controllers/firebase_controller";
 export const defaultTask = [
   { id: 1, name: "Run to the moon" },
   { id: 2, name: "Run to the sun" },
@@ -18,6 +18,21 @@ export const useTasks = (selectedProject) => {
   const [archivedTasks, setArchivedTasks] = useState(defaultArchivedTask);
 
   useEffect(() => {
+    async function getTasks() {
+      const tasksSnapshot = tasksRef.where("projectId", "==", selectedProject);
+      const tasksRealTime = tasksSnapshot.onSnapshot((snapshot) => {
+        const tasks = snapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+
+        setTasks(tasks.filter((task) => task.archived !== true));
+        setArchivedTasks(tasks.filter((task) => task.archived !== false));
+      });
+    }
+
+    getTasks();
+    return () => getTasks();
+
     // load new tasks
   }, [selectedProject]);
 
