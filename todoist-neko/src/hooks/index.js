@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { tasksRef } from "../controllers/firebase_controller";
+import { tasksRef, getProjects } from "../controllers/firebase_controller";
 export const defaultTask = [
   { id: 1, name: "Run to the moon" },
   { id: 2, name: "Run to the sun" },
@@ -31,7 +31,6 @@ export const useTasks = (selectedProject) => {
     }
 
     getTasks();
-    return () => getTasks();
 
     // load new tasks
   }, [selectedProject]);
@@ -41,6 +40,12 @@ export const useTasks = (selectedProject) => {
 
 export const useProjects = () => {
   const [projects, setProjects] = useState(defaultProject);
-  useEffect(() => {}, [projects]);
+  useEffect(() => {
+    async function fetchProjects() {
+      const newProjects = await getProjects();
+      setProjects(newProjects);
+    }
+    fetchProjects();
+  }, [projects]);
   return { projects, setProjects };
 };
