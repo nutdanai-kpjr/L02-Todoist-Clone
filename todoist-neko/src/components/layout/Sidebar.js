@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-
+import { useProjectsValue } from "../../context";
+import { addProject } from "../../controllers/firebase_controller";
+import { Project } from "../projects/Project";
 export const Sidebar = () => {
+  const { projects } = useProjectsValue();
+  const add = (name) => {
+    addProject("New Project");
+  };
   return (
     <div className="sidebar">
       Sidebar
@@ -22,14 +28,21 @@ export const Sidebar = () => {
       </div>
       <div className="sidebar__quickacess_projects">
         <ul>
+          {projects.map((project) => (
+            <Project
+              key={project.id}
+              id={project.id}
+              name={project.name}
+            ></Project>
+          ))}
           <li>
-            <button>Project Spaceship (Remove)</button>
+            <button>{projects.length}Project Spaceship (Remove)</button>
           </li>
           <li>
             <button>Project Wooden PC</button>
           </li>
           <li>
-            <button>Add Projects</button>
+            <button onClick={add}>Add Projects</button>
           </li>
         </ul>
       </div>

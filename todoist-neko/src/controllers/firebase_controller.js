@@ -1,5 +1,6 @@
 import { firebase } from "../firebase";
 import "firebase/compat/firestore";
+import { log } from "../helpers/logger";
 const db = firebase.firestore();
 const usersRef = db.collection("users");
 const userRef = usersRef.doc("test-user-id");
@@ -11,12 +12,16 @@ const addProject = async (name) => {
     name: name,
   };
   await projectsRef.add(project);
+  log("Project Added");
   return;
 };
 
 const deleteProject = async (id) => {
+  log({ id });
   const project = projectsRef.doc(id);
-  await project.delete();
+  log("deleteProject", id);
+  //   log({ project });
+  //   await project.delete();
   return;
 };
 
@@ -45,7 +50,7 @@ const editTask = async (id, name, projectId, date) => {
 };
 
 const getProjects = async () => {
-  const projectsSnapshot = await projects.get();
+  const projectsSnapshot = await projectsRef.get();
   const projects = projectsSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });

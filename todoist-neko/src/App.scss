@@ -59,3 +59,20 @@
     cursor: pointer;
     width: 40px;
 }
+
+.project{
+  display: flex;
+  align-items: center;
+}
+
+.project__tail{
+  display: none;
+}
+
+.project__tail:hover{
+  display: block;
+}
+
+.project__head:hover + .project__tail{
+  display: block;
+}

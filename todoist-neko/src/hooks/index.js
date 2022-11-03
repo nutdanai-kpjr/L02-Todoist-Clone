@@ -28,9 +28,14 @@ export const useTasks = (selectedProject) => {
         setTasks(tasks.filter((task) => task.archived !== true));
         setArchivedTasks(tasks.filter((task) => task.archived !== false));
       });
+      console.log("tasksRealTime");
     }
 
     getTasks();
+    // return () => {
+    //   // cleanup
+    //   getTasks();
+    // };
 
     // load new tasks
   }, [selectedProject]);
